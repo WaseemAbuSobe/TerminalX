@@ -8,4 +8,6 @@ export class BasePage {
     initPage = async () => {
         await this.page.waitForLoadState("load")
     }
+
+    
 } 
