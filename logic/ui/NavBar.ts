@@ -8,7 +8,7 @@ export class NavBar extends BasePage{
         super(page)
         this.initPage()
         this.onSaleButton = this.page.locator('a[href="/on-sale"]')
-        this.menButton = this.page.locator('a[href="/men"]')
+        this.menButton = this.page.locator('a[href="/men"]').first()
     }
     public async flowToOnSale(){
         await this.onSaleButton.click()
