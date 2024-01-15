@@ -22,15 +22,27 @@ test.describe('search test', ()=>{
         await browserWrapper.closeBrowser();
     })
 
-
-    test('Perform search on TerminalX', async () => {
-        const page = await browserWrapper.getPage(WebsiteUrl)
+    
+    const performSearch = async () => {
+        const page = await browserWrapper.getPage(WebsiteUrl);
         const searchPage = new SearchPage(page);
         await browserWrapper.maximizeWindow();
-        await searchPage.clickSearchIcon()   
+        await searchPage.clickSearchIcon();
         await searchPage.typeSearch(brandSearch);
         await page.keyboard.press('Enter');
-        expect(await searchPage.getProductListItemsText(brandSearch)).toBeTruthy();
+        return searchPage;
+    };
+
+    test('Perform search on TerminalX ', async () => {
+        const searchPage = await performSearch();
+         expect(await searchPage.getProductListItemsText(brandSearch)).toBeTruthy();
+    
+        
+    });
+
+    test('Perform search from LOW PRICE to high PRICE', async () => {
+        const searchPage = await performSearch();
+        expect(await searchPage.isSortedLowToHigh()).toBeTruthy();
         
     });
  })
