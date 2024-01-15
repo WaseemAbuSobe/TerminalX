@@ -13,6 +13,7 @@ export class BrowserWrapper {
         }
         return this.page
     }
+    
 
     async maximizeWindow() {
         if (this.page) {
