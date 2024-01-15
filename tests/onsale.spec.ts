@@ -2,12 +2,10 @@ import {Page, expect, test} from '@playwright/test'
 import { BrowserWrapper } from '../infra/ui/brwoser-wrapper'
 import { OnSale } from '../logic/ui/OnSale';
 import { NavBar } from '../logic/ui/NavBar';
-import * as fs from 'fs';
+import * as UI_URLS from '../configs/ui-urls.json'
 
 let browser:BrowserWrapper
 let page:Page
-const configFile = fs.readFileSync('./configs/ui-urls.json', 'utf-8');
-const UI_URLS = JSON.parse(configFile);
 test.beforeEach(async()=>{
     browser = new BrowserWrapper()
     page = await browser.getPage(UI_URLS.mainPage);
