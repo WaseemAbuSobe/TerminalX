@@ -1,7 +1,9 @@
 import {test, expect} from '@playwright/test';
 import {BrowserWrapper} from '../infra/ui/brwoser-wrapper';
 import {SearchPage} from '../logic/pages/searchPage';
+
 import {websiteUrl} from '../config/ui-urls.json';
+
 import {brandSearch} from '../config/brandSearch.json'
 
 test.describe('search test', ()=>{
@@ -19,15 +21,6 @@ test.describe('search test', ()=>{
         await browserWrapper.closeBrowser();
     })
 
-    const performSearch = async () => {
-        const page = await browserWrapper.getPage(websiteUrl);
-        const searchPage = new SearchPage(page);
-        await browserWrapper.maximizeWindow();
-        await searchPage.clickSearchIcon();
-        await searchPage.typeSearch(brandSearch);
-        await page.keyboard.press('Enter');
-        return searchPage;
-    };
 
     test('Perform search on TerminalX ', async () => {
         const searchPage = await performSearch();
@@ -41,7 +34,6 @@ test.describe('search test', ()=>{
         expect(await searchPage.isSortedLowToHigh()).toBeTruthy();
         
     });
- })
 
 
 
