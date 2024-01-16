@@ -1,18 +1,25 @@
-import { test, Page } from "@playwright/test";
+import { test, expect } from "@playwright/test";
 import { BrowserWrapper } from "../infra/ui/brwoser-wrapper";
 import uiUrls from "../config/ui-urls.json"
+import { Header } from "../logic/ui/header";
+import user from "../config/user-credentials.json"
 
-let browser: BrowserWrapper;
-let page :Page
 
 test.describe("Acoount Fanctuonality Tests",async () => {
-    test.beforeAll(async () => {
+    let browser: BrowserWrapper;
+
+    test.beforeEach(async () => {
         browser = new BrowserWrapper();
     });
-    
-    test.only('Login Test', async () => {
-        page = await browser.getPage(uiUrls.websiteUrl)
-        browser.maximizeWindow()
-        await page.waitForTimeout(5000)
+
+    test.afterEach(async () => {
+        browser.closeBrowser()
     });
+
+    test('Login Test', async () => {
+        const page = await browser.getPage(uiUrls.websiteUrl)
+        const header = new Header(page)
+        expect(await header.getLoggedinUserName()).toBe(user.name)
+    });
+
 })
