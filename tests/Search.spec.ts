@@ -1,9 +1,11 @@
 import {test, expect, Page} from '@playwright/test';
 import {BrowserWrapper} from '../infra/ui/brwoser-wrapper';
-import {SearchPage} from '../logic/ui/searchPage';
-import {websiteUrl} from '../config/ui-urls.json';
-import {brandSearch} from '../config/brandSearch.json'
 
+import {SearchPage} from '../logic/ui/searchPage';
+
+import {websiteUrl} from '../config/ui-urls.json';
+
+import {brandSearch} from '../config/brandSearch.json'
 
 test.describe('search test', ()=>{
     let browserWrapper : BrowserWrapper;
@@ -12,10 +14,8 @@ test.describe('search test', ()=>{
 
     test.beforeAll(async()=>{
         browserWrapper = new BrowserWrapper();
-
     })
     
-
     test.afterEach(async()=>{
         await browserWrapper.closeBrowser();
     })
@@ -42,6 +42,7 @@ test.describe('search test', ()=>{
         
     });
 
+
     test('Perform search from High PRICE to Low PRICE', async () => {
         const page = await browserWrapper.getPage(websiteUrl);
         searchPage = new SearchPage(page);
@@ -52,6 +53,7 @@ test.describe('search test', ()=>{
     });
     
  })
+
 
 
 

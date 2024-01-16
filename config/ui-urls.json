@@ -1,3 +1,6 @@
 {
-    "websiteUrl":"https://www.terminalx.com/"
+    "websiteUrl":"https://www.terminalx.com/",
+    "menPage":"https://www.terminalx.com/men",
+    "mainPage" : "https://www.terminalx.com/",
+    "jacketPage" : "https://www.terminalx.com/men/jackets-coats/jackets"
 }
