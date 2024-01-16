@@ -1,4 +1,4 @@
-import {test, expect} from '@playwright/test';
+import {test, expect, Page} from '@playwright/test';
 import {BrowserWrapper} from '../infra/ui/brwoser-wrapper';
 import {SearchPage} from '../logic/ui/searchPage';
 import {websiteUrl} from '../config/ui-urls.json';
@@ -7,14 +7,12 @@ import {brandSearch} from '../config/brandSearch.json'
 
 test.describe('search test', ()=>{
     let browserWrapper : BrowserWrapper;
+    let page : Page;
+    let searchPage : SearchPage;
 
     test.beforeAll(async()=>{
         browserWrapper = new BrowserWrapper();
 
-    })
-
-    test.beforeEach(async()=>{
-        await browserWrapper.maximizeWindow();
     })
     
 
@@ -22,32 +20,34 @@ test.describe('search test', ()=>{
         await browserWrapper.closeBrowser();
     })
 
-    
-    const performSearch = async () => {
+
+    test('Perform search on TerminalX ', async () => {
         const page = await browserWrapper.getPage(websiteUrl);
-        const searchPage = new SearchPage(page);
-        await browserWrapper.maximizeWindow();
+        searchPage = new SearchPage(page);
         await searchPage.clickSearchIcon();
         await searchPage.typeSearch(brandSearch);
         await page.keyboard.press('Enter');
-        return searchPage;
-    };
-
-    test('Perform search on TerminalX ', async () => {
-        const searchPage = await performSearch();  
-         expect(await searchPage.getProductListItemsText(brandSearch)).toBeTruthy();
+        expect(await searchPage.getProductListItemsText(brandSearch)).toBeTruthy();
     
         
     });
 
     test('Perform search from LOW PRICE to high PRICE', async () => {
-        const searchPage = await performSearch();
+        const page = await browserWrapper.getPage(websiteUrl);
+        searchPage = new SearchPage(page);
+        await searchPage.clickSearchIcon();
+        await searchPage.typeSearch(brandSearch);
+        await page.keyboard.press('Enter');
         expect(await searchPage.isSortedLowToHigh()).toBeTruthy();
         
     });
 
     test('Perform search from High PRICE to Low PRICE', async () => {
-        const searchPage = await performSearch();
+        const page = await browserWrapper.getPage(websiteUrl);
+        searchPage = new SearchPage(page);
+        await searchPage.clickSearchIcon();
+        await searchPage.typeSearch(brandSearch);
+        await page.keyboard.press('Enter');
         expect(await searchPage.isSortedHighToLow()).toBeTruthy();  
     });
     
