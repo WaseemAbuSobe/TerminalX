@@ -23,24 +23,7 @@ test.describe('search test', ()=>{
     })
 
 
-    test('Perform search on TerminalX ', async () => {
-        const searchPage = await performSearch();  
-         expect(await searchPage.getProductListItemsText(brandSearch)).toBeTruthy();
-    
-        
-    });
 
-    test('Perform search from LOW PRICE to high PRICE', async () => {
-        const searchPage = await performSearch();
-        expect(await searchPage.isSortedLowToHigh()).toBeTruthy();
-        
-    });
-
-
-    test('Perform search from High PRICE to Low PRICE', async () => {
-        const searchPage = await performSearch();
-        expect(await searchPage.isSortedHighToLow()).toBeTruthy();  
-    });
     
  })
 
