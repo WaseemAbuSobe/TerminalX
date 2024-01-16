@@ -1,6 +1,7 @@
 import {test, expect} from '@playwright/test';
 import {BrowserWrapper} from '../infra/ui/brwoser-wrapper';
-import {SearchPage} from '../logic/pages/searchPage';
+
+import {SearchPage} from '../logic/ui/searchPage';
 
 import {websiteUrl} from '../config/ui-urls.json';
 
@@ -23,7 +24,7 @@ test.describe('search test', ()=>{
 
 
     test('Perform search on TerminalX ', async () => {
-        const searchPage = await performSearch();
+        const searchPage = await performSearch();  
          expect(await searchPage.getProductListItemsText(brandSearch)).toBeTruthy();
     
         
@@ -34,6 +35,15 @@ test.describe('search test', ()=>{
         expect(await searchPage.isSortedLowToHigh()).toBeTruthy();
         
     });
+
+
+    test('Perform search from High PRICE to Low PRICE', async () => {
+        const searchPage = await performSearch();
+        expect(await searchPage.isSortedHighToLow()).toBeTruthy();  
+    });
+    
+ })
+
 
 
 
