@@ -2,5 +2,8 @@
     "websiteUrl":"https://www.terminalx.com/",
     "menPage":"https://www.terminalx.com/men",
     "mainPage" : "https://www.terminalx.com/",
-    "jacketPage" : "https://www.terminalx.com/men/jackets-coats/jackets"
+    "jacketPage" : "https://www.terminalx.com/men/jackets-coats/jackets",
+    "addNewAddressPage" : "https://www.terminalx.com/customer/address/new",
+    "myAdressesPage" : "https://www.terminalx.com/customer/address?limit=10",
+    "onSalePage" : "https://www.terminalx.com/on-sale"
 }
