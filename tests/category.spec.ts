@@ -22,7 +22,6 @@ test.describe('Sort Jackets To red And Validate', () => {
         const sideMenu = new SideMenu(page)
         await sideMenu.clickColor()
         await sideMenu.clickRedOption()
-
         const jacketForMenPage = new JacketForMenPage(page)
         for (let i = 0; i < await jacketForMenPage.getTotalProducts(); i++) {
             expect(await jacketForMenPage.checkColor(i)).toBeTruthy()

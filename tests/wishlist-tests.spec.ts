@@ -26,5 +26,4 @@ test.describe("Wishlist Tests", async () => {
         const wishlist = new WishlistPage(page)
         await expect(wishlist.getItemTitleLocator(productConfig.product1.name)).toBeVisible()
     });
-
 })

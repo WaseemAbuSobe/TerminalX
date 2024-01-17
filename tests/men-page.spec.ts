@@ -28,6 +28,5 @@ test.describe('Flow To Men Page And Validate', () => {
         await navbar.flowToMen()
         const menPage = new MenPage(page)
         expect(await menPage.menLogoIsActive()).toBeTruthy()
-
     })
 })
