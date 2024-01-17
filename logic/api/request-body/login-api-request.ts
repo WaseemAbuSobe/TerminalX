@@ -1,19 +1,18 @@
-interface UserCredential{
-    username : string,
-    password:string
-}
-
-const setUserCredential = (username:string,password:string)=>{
-    return{
-        username: username,
-        password:password
+interface UserCredential {
+    data: {
+        username: string,
+        password: string
     }
 }
 
-export const requestOptionsUserLogin = (username:string,password:string) => {
+const setUserCredential = (username: string, password: string): UserCredential => {
     return {
-        data: setUserCredential(username, password),
+        data: {
+            username: username,
+            password: password
+        }
     }
 }
 
-export{UserCredential}
+
+export { UserCredential, setUserCredential }

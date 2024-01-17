@@ -6,8 +6,6 @@ export class BasePage {
         this.page = page;
     }
     initPage = async () => {
-        await this.page.waitForLoadState("load")
+        await this.page.waitForLoadState("domcontentloaded")
     }
-
-    
 } 
