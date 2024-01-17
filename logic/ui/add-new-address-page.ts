@@ -19,6 +19,7 @@ export class AddNewAddressPage extends BasePage {
         this.mobileNumber = page.locator('input[name="telephone"]')
         this.postcode = page.locator('input[name="postcode"]')
         this.saveAddressButton = page.locator('button[type="submit"].tx-link-a.button-botttom_C2WD.tx-link_29YD.btn_1UzJ.btn-yellow_2tf3')
+        this.initPage()
     }
 
     fillAddress = async (city_address: string, street_address: string, number_address: string, mobile_address: string, postcode_address: string) => {
@@ -37,33 +38,31 @@ export class AddNewAddressPage extends BasePage {
     }
 
     fillCityAddress = async (city_address: string) => {
-        await this.cityAddress.click()
+        //await this.cityAddress.click()
         await this.cityAddress.fill(city_address)
     }
 
     fillStreetAdrees = async (street_address: string) => {
         await this.streetAdress.click()
-        await this.page.waitForTimeout(200)
+        await this.page.keyboard.press('Enter')
         await this.streetAdress.fill(street_address)
+        
     }
 
     fillNumberAddress = async (number_address: string) => {
-        await this.numberAddress.click()
         await this.numberAddress.fill(number_address)
     }
 
     fillMobileAddress = async (mobile_address: string) => {
-        await this.mobileNumber.click()
         await this.mobileNumber.fill(mobile_address)
     }
 
     fillPostCode = async (postcode_address: string) => {
-        await this.postcode.click()
+
         await this.postcode.fill(postcode_address)
     }
 
     clickSaveAddress = async () => {
-        await this.page.waitForTimeout(200)
         await this.saveAddressButton.click()
     }
 }

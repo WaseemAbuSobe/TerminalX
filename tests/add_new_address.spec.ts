@@ -26,8 +26,8 @@ test.describe('Add New Address And Validate ', () => {
         page = await browser.getPage(UI_URLS.addNewAddressPage);
         const addNewAddress = new AddNewAddressPage(page)
         await addNewAddress.fillAddress(city_address,street_address,number_address,phone_number,postcode_address)
-
-        page = await browser.getPage(UI_URLS.myAdressesPage);
+        
+        //page = await browser.getPage(UI_URLS.myAdressesPage);
         const addressPage = new AddressPage(page)
         expect( await addressPage.checkAddress(city_address,street_address,number_address,phone_number,postcode_address)).toBeTruthy()
 
