@@ -11,6 +11,9 @@ export class SearchPage extends BasePage {
     private readonly productList: Locator;
     private readonly sortField :Locator;
     private readonly sortFieldSelect : Locator;
+    private readonly sizeFilterButton :Locator;
+    private readonly filterByHatButton  : Locator;
+    private readonly filterList : Locator;
 
    
     constructor(page:Page){
@@ -21,10 +24,13 @@ export class SearchPage extends BasePage {
         this.productList = page.locator('.product-list_yyTm')
         this.sortField = page.locator('.select_zdc5 rtl_62yk')
         this.sortFieldSelect = page.locator('select[name="sortField"]');
+        this.sizeFilterButton = page.locator('h4.title_ramR:has-text("סוג מוצר")')
+        this.filterByHatButton  = page.locator('li.filter-item_wzYv:has-text("כובעים"):not(:has-text("ואביזרי שיער")) a.tx-link-a')
+        this.filterList = page.locator('.listing-product_3mjp')
         this.initPage()
     }
     
-    
+
     async clickSearchIcon() {
         await this.searchIcon.click();
     }
@@ -43,6 +49,7 @@ export class SearchPage extends BasePage {
     async selectPriceAscendingOption(){
         await this.sortFieldSelect.selectOption('price_asc');
     }
+
 
 
     async getProductListItemsText(query: string) {
@@ -81,12 +88,32 @@ export class SearchPage extends BasePage {
         return true; 
     }
 
+    async clickFilterButton(){
+        await this.sizeFilterButton.click();
+        await this.filterByHatButton .click();
+    }
+
+    async checkSizeFilter(filter : string){
+       await this.clickFilterButton();
+        for (let i = 0; i < await this.filterList.count(); i++) {
+            if(!this.filterList.locator(".right_1o65 a", { hasText: filter }).nth(i)) {
+               return false;
+            }  
+        }
+        return true;
+    }
+
+
+    }
+
+    
+
     
   
   
 
    
-}
+
     
     
     
