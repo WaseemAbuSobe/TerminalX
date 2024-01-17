@@ -1,6 +1,6 @@
 import { Page, expect, test } from '@playwright/test'
 import { BrowserWrapper } from '../infra/ui/brwoser-wrapper'
-import { OnSalePage } from '../logic/pages/OnSalePage';
+import { OnSalePage } from '../logic/ui/OnSalePage';
 import { NavBar } from '../logic/ui/NavBar';
 import * as UI_URLS from '../config/ui-urls.json'
 

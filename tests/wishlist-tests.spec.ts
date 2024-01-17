@@ -7,7 +7,7 @@ import { buildWishlistRequest } from "../logic/api/request-body/add-to-wishlist-
 import { WishlistPage } from "../logic/ui/wishlist-page";
 
 
-test.describe.only("Wishlist Cart Tests", async () => {
+test.describe("Wishlist Tests", async () => {
 
     let browser: BrowserWrapper;
 
@@ -21,8 +21,6 @@ test.describe.only("Wishlist Cart Tests", async () => {
         const data = buildWishlistRequest(productConfig.product1.sku)
         const apiCall = new ApiCalls()
         await apiCall.addItemToWishlist(data)
-
-
         const page = await browser.getPage(uiUrls.wishlistPage)
         await page.waitForTimeout(5000)
         const wishlist = new WishlistPage(page)

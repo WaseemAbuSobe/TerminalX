@@ -2,8 +2,8 @@ import { Page, expect, test } from '@playwright/test'
 import { BrowserWrapper } from '../infra/ui/brwoser-wrapper'
 import { NavBar } from '../logic/ui/NavBar';
 import * as UI_URLS from '../config/ui-urls.json'
-import { JacketForMenPage } from '../logic/pages/JacketForMenPage';
-import { SideMenu } from '../logic/pages/SideMenu';
+import { JacketForMenPage } from '../logic/ui/JacketForMenPage';
+import { SideMenu } from '../logic/ui/SideMenu';
 
 
 test.describe('Flow To Jacket For Men Page And Sort Jackets To red And Validate', () => {

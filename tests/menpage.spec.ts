@@ -2,7 +2,7 @@ import { Page, expect, test } from '@playwright/test'
 import { BrowserWrapper } from '../infra/ui/brwoser-wrapper'
 import { NavBar } from '../logic/ui/NavBar';
 import * as UI_URLS from '../config/ui-urls.json'
-import { MenPage } from '../logic/pages/MenPage';
+import { MenPage } from '../logic/ui/MenPage';
 
 test.describe('Flow To Men Page And Validate', () => {
     let browser: BrowserWrapper
