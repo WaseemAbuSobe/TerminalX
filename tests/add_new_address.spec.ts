@@ -20,13 +20,11 @@ test.describe('Add New Address And Validate ', () => {
     test.afterEach(async () => { await browser.closeBrowser() })
 
     test('Add New Address And Validate', async () => {
-        // add address
         const {firstname,lastname,postcode,telephone,city,country_id} = {...user.address}
         const {streetName,streetNumber,homeNumber} = {...user.address.street}
         const data = buildAddressRequest(firstname,lastname,postcode,telephone,city,country_id,{streetName,streetNumber,homeNumber})
         const apiCall = new ApiCalls();
         await apiCall.addNewAdress(data)
-        // assert
         const addressPage = new AddressPage(page)
         expect( await addressPage.checkAddress(firstname,lastname,city,streetName,homeNumber,telephone,postcode)).toBeTruthy()
 

@@ -5,7 +5,7 @@ import {SearchPage} from '../logic/ui/searchPage';
 import productPhoto from '../config/product-photos.json'
 import {websiteUrl} from '../config/ui-urls.json';
 import * as query from '../config/query.json';
-import { NavBar } from '../logic/ui/NavBar';
+import { NavBar } from '../logic/ui/nav-bar';
 import { SearchByPhotoPopup } from '../logic/ui/search-by-photo-popup';
 import { ProductPage } from '../logic/ui/product-page';
 
@@ -33,7 +33,6 @@ test.describe('search test', ()=>{
         const productPage = new ProductPage(page)
         expect(await productPage.getProductName()).toContain(productPhoto.product1.productType)
         expect(await productPage.getProductColor()).toBe(productPhoto.product1.productColor)
-        //await page.waitForTimeout(10000)
     })
 
     test('Perform search on TerminalX ', async () => {

@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, Page } from "@playwright/test";
 import { BrowserWrapper } from "../infra/ui/brwoser-wrapper";
 import { ApiCalls } from "../logic/api/api-requtsets";
 import uiUrls from "../config/ui-urls.json"
@@ -10,18 +10,18 @@ import { CartPage } from "../logic/ui/cart-page";
 test.describe("Shopping Cart Tests", async () => {
 
     let browser: BrowserWrapper;
-
+    let page: Page
     test.beforeEach(async () => {
         browser = new BrowserWrapper();
     });
     test.afterEach(async () => {
-        browser.closeBrowser()
+        await browser.closeBrowser()
     })
     test('add to cart', async () => {
         const data = buildCartRequest(productConfig.product1.sku, productConfig.product1.quantity)
         const apiCall = new ApiCalls()
         await apiCall.addItemToCart(data)
-        const page = await browser.getPage(uiUrls.cartPageUrl)
+        page = await browser.getPage(uiUrls.cartPageUrl)
         const cartPage = new CartPage(page)
         await expect(cartPage.getItemTitleLocator(productConfig.product1.name)).toBeVisible()
     });
@@ -30,7 +30,7 @@ test.describe("Shopping Cart Tests", async () => {
         const data = buildCartRequest(productConfig.product2.sku, productConfig.product2.quantity)
         const apiCall = new ApiCalls()
         await apiCall.addItemToCart(data)
-        const page = await browser.getPage(uiUrls.cartPageUrl)
+        page = await browser.getPage(uiUrls.cartPageUrl)
         const cartPage = new CartPage(page)
         expect(await cartPage.getFreeShippingTitle()).toBe("מגיע לך משלוח חינם!")
     });
