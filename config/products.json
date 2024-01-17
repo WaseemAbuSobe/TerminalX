@@ -2,13 +2,11 @@
     "product1":{
         "name":"טי שירט ריצה Nike Miler Flash",
         "sku":"W25546000106",
-        "quantity":1,
-        "price":179.90
+        "quantity":1
     },
     "product2":{
         "name":"מכנסי ג'ינס בגזרה ישרה / גברים",
         "sku":"W25440000807",
-        "quantity":2,
-        "price":287.94
+        "quantity":2
     }
 }

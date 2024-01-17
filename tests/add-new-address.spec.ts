@@ -4,7 +4,7 @@ import * as UI_URLS from '../config/ui-urls.json'
 import { AddressPage } from '../logic/ui/address-page'
 import user from "../config/user-credentials.json"
 import { ApiCalls } from "../logic/api/api-requtsets";
-import { buildAddressRequest } from "../logic/api/request-body/add-new-address-api-request";
+import { buildAddressRequest } from "../logic/api/request-body/account-address";
 
 test.describe('Add New Address And Validate ', () => {
 

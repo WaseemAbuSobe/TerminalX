@@ -2,5 +2,8 @@
     "loginApiUrl": "https://www.terminalx.com/pg/MutationUserLogin?v=I9dIkXxqUgEmvaClIy6g3%2FMlpMA%3D",
     "addToCartApiUrl": "https://www.terminalx.com/pg/MutationAddAnyProductsToAnyCart?v=t4MeNg4Nhm8cTtfc8ZbCpP00Dzo%3D",
     "addToWishlistUrl": "https://www.terminalx.com/pg/MutationAddProductsToWishlist?v=o%2Fi6SZVDy2k6kuJd8zRFtjUC6Hs%3D",
-    "addNewAddress": "https://www.terminalx.com/pg/MutationCreateCustomerAddress?v=7M21Ktwz3hl5WT0GoUlh5nBYIc4%3D"
+    "addNewAddress": "https://www.terminalx.com/pg/MutationCreateCustomerAddress?v=7M21Ktwz3hl5WT0GoUlh5nBYIc4%3D",
+    "CurrentUserInfo":"https://www.terminalx.com/pg/QueryCurrentUserInfo?v=Vy487KOB%2FsDB%2F0cFkmdYWkLOsB8%3D",
+    "deleteCartItem" : "https://www.terminalx.com/pg/MutationRemoveItemFromAnyCart?v=wj1SQTLJ2rlXfTskhC3yArhKE9k%3D",
+    "deleteWishListItem" : "https://www.terminalx.com/pg/MutationRemoveProductsFromAnyWishlistById?v=h287aaTZzqucFBm5bEc305ztqE8%3D"
 }

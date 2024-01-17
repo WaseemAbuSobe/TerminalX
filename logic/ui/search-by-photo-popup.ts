@@ -25,11 +25,6 @@ export class SearchByPhotoPopup extends BasePage {
 
     goToRandomProduct = async () => {
         await this.productsList.nth(0).waitFor({ state: 'visible'})
-        const randomIndex:number = this.getRandomInt(0,await this.productsList.count())
-        await this.productsList.nth(randomIndex).click()
+        await this.productsList.first().click()
     }
-
-    getRandomInt(min: number, max: number): number {
-        return Math.floor(Math.random() * (max - min) + min);
-    } 
 }

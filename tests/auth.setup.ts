@@ -3,7 +3,7 @@ import { Header } from '../logic/ui/header';
 import userCredntials from "../config/user-credentials.json"
 import { ApiCalls } from '../logic/api/api-requtsets';
 import userCredential from "../config/user-credentials.json"
-import { setUserCredential } from '../logic/api/request-body/login-api-request';
+import { setUserCredential } from '../logic/api/request-body/login';
 
 
 
