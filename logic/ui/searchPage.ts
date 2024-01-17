@@ -10,10 +10,10 @@ export class SearchPage extends BasePage {
     private readonly searchClick: Locator;
     private readonly productList: Locator;
     private readonly sortField :Locator;
-    private readonly sortedPrice :Locator;
-    private readonly sortedItems :Locator;
-    private readonly searchTotal :Locator;
-    private readonly total :Locator;
+    private readonly sortFieldSelect : Locator;
+    private readonly sizeFilterButton :Locator;
+    private readonly filterByHatButton  : Locator;
+    private readonly filterList : Locator;
 
    
     constructor(page:Page){
@@ -23,23 +23,34 @@ export class SearchPage extends BasePage {
         this.searchClick = page.locator('.qa-search-box-submit-button')
         this.productList = page.locator('.product-list_yyTm')
         this.sortField = page.locator('.select_zdc5 rtl_62yk')
-        this.sortedPrice = page.locator('.select_zdc5 rtl_62yk :text-is("מחיר: מהנמוך לגבוה")')
-        this.sortedItems = page.locator('.product-list_yyTm')
-        this.searchTotal = page.locator('[data-test="search-totals"]')
-        this.total = page.locator('.product-list_yyTm')
+        this.sortFieldSelect = page.locator('select[name="sortField"]');
+        this.sizeFilterButton = page.locator('h4.title_ramR:has-text("סוג מוצר")')
+        this.filterByHatButton  = page.locator('li.filter-item_wzYv:has-text("כובעים"):not(:has-text("ואביזרי שיער")) a.tx-link-a')
+        this.filterList = page.locator('.listing-product_3mjp')
         this.initPage()
     }
+    
+
     async clickSearchIcon() {
         await this.searchIcon.click();
     }
+
 
     async SearchClick() { 
         await this.searchClick.click();
     }
 
+
     async typeSearch(query: string) {
         await this.searchInput.fill(query);
-      }
+    }
+      
+
+    async selectPriceAscendingOption(){
+        await this.sortFieldSelect.selectOption('price_asc');
+    }
+
+
 
     async getProductListItemsText(query: string) {
         for (let i = 0; i < 3; i++) {
@@ -50,24 +61,16 @@ export class SearchPage extends BasePage {
         return true;
     }
 
+
     async clickSortFieldButton(){
         await this.sortField.click();
     }
-    
-
-    async clickSortedPriceButton(){
-        await this.sortedPrice.click();
-    }
-
-    async navigateToSortedItems(){
-        await this.clickSortFieldButton();
-        await this.clickSortedPriceButton();
-    }
 
 
-    async isSortedLowToHigh(){
-        for (let i = 0; i < await this.sortedItems.count() - 1; i++) {
-            if (this.sortedItems.nth(i) > this.sortedItems.nth(i + 1)) {
+    async isSortedHighToLow(){
+        await this.sortFieldSelect.selectOption('price_desc');
+        for (let i = 0; i < await this.sortFieldSelect.count() - 1; i++) {
+            if (this.sortFieldSelect.nth(i) > this.sortFieldSelect.nth(i + 1)) {
                 return false; 
             }
         }
@@ -75,22 +78,42 @@ export class SearchPage extends BasePage {
     }
 
 
-    async expectedCount(){
-        // Get the inner data from the search total element
-        const searchTotalText = await this.searchTotal.innerText();
-        console.log(searchTotalText)
-        const expectedCount = parseInt(searchTotalText, 10);
+    async isSortedLowToHigh(){
+        await this.sortFieldSelect.selectOption('price_asc');
+        for (let i = 0; i < await this.sortFieldSelect.count() - 1; i++) {
+            if (this.sortFieldSelect.nth(i) > this.sortFieldSelect.nth(i + 1)) {
+                return false; 
+            }
+        }
+        return true; 
+    }
+
+    async clickFilterButton(){
+        await this.sizeFilterButton.click();
+        await this.filterByHatButton .click();
+    }
+
+    async checkSizeFilter(filter : string){
+       await this.clickFilterButton();
+        for (let i = 0; i < await this.filterList.count(); i++) {
+            if(!this.filterList.locator(".right_1o65 a", { hasText: filter }).nth(i)) {
+               return false;
+            }  
+        }
+        return true;
+    }
+
+
+    }
+
+    
+
+    
   
-        return expectedCount;
-    }
+  
 
+   
 
-    async productListCount(){
-        const productcount = await this.total.count();
-        return productcount;
-        
-    }
-}
     
     
     

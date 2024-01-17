@@ -11,6 +11,7 @@ export class BrowserWrapper {
         if (url) {
             await this.page.goto(url);
         }
+        this.maximizeWindow()
         return this.page
     }
     

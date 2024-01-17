@@ -1,4 +1,10 @@
 {
+    "websiteUrl": "https://www.terminalx.com/",
+    "menPage": "https://www.terminalx.com/men",
+    "mainPage": "https://www.terminalx.com/",
+    "jacketPage": "https://www.terminalx.com/men/jackets-coats/jackets",
+    "wishlistPage": "https://www.terminalx.com/wishlist/items",
+    "cartPageUrl": "https://www.terminalx.com/checkout/cart",
     "websiteUrl":"https://www.terminalx.com/",
     "menPage":"https://www.terminalx.com/men",
     "mainPage" : "https://www.terminalx.com/",
