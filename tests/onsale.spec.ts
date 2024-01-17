@@ -18,6 +18,7 @@ test.describe('Flow To OnSale Page And Validate The Sale', () => {
     test.afterEach(async () => {
         await browser.closeBrowser()
     })
+    
     test('Flow To On Sale Page', async () => {
         const navbar = new NavBar(page)
         await navbar.flowToOnSale()

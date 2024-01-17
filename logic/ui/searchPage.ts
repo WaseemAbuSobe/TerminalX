@@ -93,7 +93,7 @@ export class SearchPage extends BasePage {
         await this.filterByHatButton .click();
     }
 
-    async checkSizeFilter(filter : string){
+    async checkTypeFilter(filter : string){
        await this.clickFilterButton();
         for (let i = 0; i < await this.filterList.count(); i++) {
             if(!this.filterList.locator(".right_1o65 a", { hasText: filter }).nth(i)) {

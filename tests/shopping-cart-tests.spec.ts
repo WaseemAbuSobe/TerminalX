@@ -26,4 +26,13 @@ test.describe("Shopping Cart Tests", async () => {
         await expect(cartPage.getItemTitleLocator(productConfig.product1.name)).toBeVisible()
     });
 
+    test('Free Shipping Above 149₪', async () => {
+        const data = buildCartRequest(productConfig.product2.sku, productConfig.product2.quantity)
+        const apiCall = new ApiCalls()
+        await apiCall.addItemToCart(data)
+        const page = await browser.getPage(uiUrls.cartPageUrl)
+        const cartPage = new CartPage(page)
+        expect(await cartPage.getFreeShippingTitle()).toBe("מגיע לך משלוח חינם!")
+    });
+
 })

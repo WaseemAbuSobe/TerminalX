@@ -3,6 +3,8 @@ import { BrowserWrapper } from "../infra/ui/brwoser-wrapper";
 import uiUrls from "../config/ui-urls.json"
 import { Header } from "../logic/ui/header";
 import user from "../config/user-credentials.json"
+import { buildAddressRequest } from "../logic/api/request-body/add-new-address-api-request";
+import { ApiCalls } from "../logic/api/api-requtsets";
 
 
 test.describe("Acoount Fanctuonality Tests",async () => {
@@ -21,5 +23,15 @@ test.describe("Acoount Fanctuonality Tests",async () => {
         const header = new Header(page)
         expect(await header.getLoggedinUserName()).toBe(user.name)
     });
+
+    test.only('Account Add New Adress',async () => {
+        const {firstname,lastname,postcode,telephone,city,country_id} = {...user.address}
+        const {streetName,streetNumber,homeNumber} = {...user.address.street}
+        const data = buildAddressRequest(firstname,lastname,postcode,telephone,city,country_id,{streetName,streetNumber,homeNumber})
+        const apiCall = new ApiCalls();
+        await apiCall.addNewAdress(data)
+        //assert
+        
+    })
 
 })

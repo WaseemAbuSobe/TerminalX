@@ -16,7 +16,9 @@ test.describe('Flow To Jacket For Men Page And Sort Jackets To red And Validate'
         await browser.maximizeWindow()
     })
 
-    test.afterEach(async () => {await browser.closeBrowser()})
+    test.afterEach(async () => {
+        await browser.closeBrowser()
+    })
 
     test('Flow To Jacket Category', async () => {
         const navbar = new NavBar(page)
@@ -29,11 +31,9 @@ test.describe('Flow To Jacket For Men Page And Sort Jackets To red And Validate'
     test('Sort To Red Color And Validate', async () => {
         const navbar = new NavBar(page)
         await navbar.flowToJacketCategory()
-
         const sideMenu = new SideMenu(page)
         await sideMenu.clickColor()
         await sideMenu.clickRedOption()
-
         const jacketForMenPage = new JacketForMenPage(page)
         for (let i = 0; i < await jacketForMenPage.getTotalProducts(); i++) {
             expect(await jacketForMenPage.checkColor(i)).toBeTruthy()
