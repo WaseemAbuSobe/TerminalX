@@ -4,5 +4,7 @@
     "mainPage": "https://www.terminalx.com/",
     "jacketPage": "https://www.terminalx.com/men/jackets-coats/jackets",
     "wishlistPage": "https://www.terminalx.com/wishlist/items",
-    "cartPageUrl": "https://www.terminalx.com/checkout/cart"
+    "cartPageUrl": "https://www.terminalx.com/checkout/cart",
+    "myAdressesPage" : "https://www.terminalx.com/customer/address?limit=10",
+    "onSalePage" : "https://www.terminalx.com/on-sale"
 }
