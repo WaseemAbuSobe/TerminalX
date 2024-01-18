@@ -23,7 +23,7 @@ test.describe('search test', ()=>{
         await browserWrapper.closeBrowser();
     })
 
-    test("Search By Photo",async () => {
+    test("Perform Search By Photo",async () => {
         const page = await browserWrapper.getPage(websiteUrl);
         const navBar = new NavBar(page);
         await navBar.openSeachByPhoto()

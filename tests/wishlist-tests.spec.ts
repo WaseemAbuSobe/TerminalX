@@ -22,7 +22,7 @@ test.describe("Wishlist Tests", async () => {
         const response = await apiCall.deleteItemFromWishlist(data)
         await browser.closeBrowser()
     })
-    test('add item wishlist', async () => {
+    test('Add Item To Wishlist Via Api And Validate Via Ui', async () => {
         const data = buildWishlistRequest(productConfig.product1.sku)
         const apiCall = new ApiCalls()
         const response = await apiCall.addItemToWishlist(data)

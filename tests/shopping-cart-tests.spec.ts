@@ -32,7 +32,7 @@ test.describe("Shopping Cart Tests", async () => {
         await apiCall.deleteItemFromCart(deleteItemData)
         await browser.closeBrowser()
     })
-    test('add to cart', async () => {
+    test('Add Item To Cart Via Api And Validate Via Api', async () => {
         const data = buildCartRequest(productConfig.product1.sku, productConfig.product1.quantity)
         itemSku = productConfig.product1.sku
         const apiCall = new ApiCalls()

@@ -16,7 +16,7 @@ test.describe("Acoount Fanctuonality Tests",async () => {
         await browser.closeBrowser()
     });
 
-    test('Login Test', async () => {
+    test('User Login Test', async () => {
         const page = await browser.getPage(uiUrls.websiteUrl)
         const header = new Header(page)
         expect(await header.getLoggedinUserName()).toBe(user.name)
