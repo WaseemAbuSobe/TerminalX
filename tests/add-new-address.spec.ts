@@ -26,7 +26,13 @@ test.describe('Add New Address And Validate ', () => {
         const apiCall = new ApiCalls();
         await apiCall.addNewAdress(data)
         const addressPage = new AddressPage(page)
-        expect( await addressPage.checkAddress(firstname,lastname,city,streetName,homeNumber,telephone,postcode)).toBeTruthy()
+        await page.reload()
+        expect(await addressPage.getName()).toBe(firstname)
+        expect(await addressPage.getLastName()).toBe(lastname)
+        expect(await addressPage.getCityAddress()).toBe(city)
+        expect(await addressPage.getStreetAddress()).toBe(`${streetName}, ${streetNumber}, ${homeNumber}`)
+        expect(await addressPage.getMobileNumber()).toBe(telephone)
+        expect(await addressPage.getPostCode()).toBe(postcode)
     })
 
 })
