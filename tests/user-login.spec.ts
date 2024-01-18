@@ -7,7 +7,7 @@ import user from "../config/user-credentials.json"
 
 test.describe("Acoount Fanctuonality Tests",async () => {
     let browser: BrowserWrapper;
-    let page: Page
+    
     test.beforeEach(async () => {
         browser = new BrowserWrapper();
     });

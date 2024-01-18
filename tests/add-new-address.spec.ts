@@ -14,7 +14,6 @@ test.describe('Add New Address And Validate ', () => {
     test.beforeEach(async () => {
         browser = new BrowserWrapper()
         page = await browser.getPage(UI_URLS.myAdressesPage);
-        await browser.maximizeWindow()
     })
 
     test.afterEach(async () => { await browser.closeBrowser() })
@@ -27,7 +26,7 @@ test.describe('Add New Address And Validate ', () => {
         await apiCall.addNewAdress(data)
         const addressPage = new AddressPage(page)
         await page.reload()
-        expect(await addressPage.getName()).toBe(firstname)
+        expect(await addressPage.getFirstName()).toBe(firstname)
         expect(await addressPage.getLastName()).toBe(lastname)
         expect(await addressPage.getCityAddress()).toBe(city)
         expect(await addressPage.getStreetAddress()).toBe(`${streetName}, ${streetNumber}, ${homeNumber}`)

@@ -14,13 +14,14 @@ import { buildCartDeleteItemRequest } from "../logic/api/request-body/cart-delet
 test.describe("Shopping Cart Tests", async () => {
 
     let browser: BrowserWrapper;
-    let page: Page
     let itemId: number;
     let userinfo: UserInfo;
     let itemSku: string;
+
     test.beforeEach(async () => {
         browser = new BrowserWrapper();
     });
+
     test.afterEach(async () => {
         const { withBasicDetails, withCartObject, withCartItems, withCartCheckoutDetails, withMultipass } = { ...user.info }
         const data = buildUserInfoRequest(withBasicDetails, withCartObject, withCartItems, withCartCheckoutDetails, withMultipass)
@@ -32,12 +33,13 @@ test.describe("Shopping Cart Tests", async () => {
         await apiCall.deleteItemFromCart(deleteItemData)
         await browser.closeBrowser()
     })
+    
     test('Add Item To Cart Via Api And Validate Via Api', async () => {
         const data = buildCartRequest(productConfig.product1.sku, productConfig.product1.quantity)
         itemSku = productConfig.product1.sku
         const apiCall = new ApiCalls()
         const response = await apiCall.addItemToCart(data)
-        page = await browser.getPage(uiUrls.cartPageUrl)
+        const page = await browser.getPage(uiUrls.cartPageUrl)
         const cartPage = new CartPage(page)
         await expect(cartPage.getItemTitleLocator(productConfig.product1.name)).toBeVisible()
     });
@@ -47,7 +49,7 @@ test.describe("Shopping Cart Tests", async () => {
         itemSku = productConfig.product2.sku
         const apiCall = new ApiCalls()
         await apiCall.addItemToCart(data)
-        page = await browser.getPage(uiUrls.cartPageUrl)
+        const page = await browser.getPage(uiUrls.cartPageUrl)
         const cartPage = new CartPage(page)
         expect(await cartPage.getFreeShippingTitle()).toBe("מגיע לך משלוח חינם!")
     });

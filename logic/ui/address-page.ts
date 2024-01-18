@@ -4,7 +4,7 @@ import { Locator, Page } from "playwright";
 
 
 export class AddressPage extends BasePage {
-    private name: Locator
+    private firstName: Locator
     private lastName: Locator
     private numberOfAddresses: Locator
     private addressTable: Locator
@@ -18,7 +18,7 @@ export class AddressPage extends BasePage {
         super(page)
         this.numberOfAddresses = page.locator('//div[@class="addresses-count_3U4L rtl_1w0V"]')
         this.addressTable = page.locator('tr')
-        this.name = this.addressTable.locator('td').nth(0)
+        this.firstName = this.addressTable.locator('td').nth(0)
         this.lastName = this.addressTable.locator('td').nth(1)
         this.streetAdress = this.addressTable.locator('td').nth(2)
         this.numberAddress = this.addressTable.locator('td').nth(2)
@@ -28,7 +28,7 @@ export class AddressPage extends BasePage {
         this.initPage()
     }
 
-    getName = async (): Promise<string> => { return (await this.name.innerText()) }
+    getFirstName = async (): Promise<string> => { return (await this.firstName.innerText()) }
 
     getLastName = async (): Promise<string> => { return (await this.lastName.innerText()) }
 
