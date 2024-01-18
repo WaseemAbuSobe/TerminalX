@@ -12,7 +12,6 @@ test.describe('Sort Jackets To red And Validate', () => {
 
     test.beforeEach(async () => {
         browser = new BrowserWrapper()
-        await browser.maximizeWindow()
     })
 
     test.afterEach(async () => {await browser.closeBrowser()})

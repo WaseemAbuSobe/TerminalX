@@ -4,7 +4,7 @@ import { Locator, Page } from "playwright";
 
 
 export class AddressPage extends BasePage {
-    private name: Locator
+    private firstName: Locator
     private lastName: Locator
     private numberOfAddresses: Locator
     private addressTable: Locator
@@ -18,7 +18,7 @@ export class AddressPage extends BasePage {
         super(page)
         this.numberOfAddresses = page.locator('//div[@class="addresses-count_3U4L rtl_1w0V"]')
         this.addressTable = page.locator('tr')
-        this.name = this.addressTable.locator('td').nth(0)
+        this.firstName = this.addressTable.locator('td').nth(0)
         this.lastName = this.addressTable.locator('td').nth(1)
         this.streetAdress = this.addressTable.locator('td').nth(2)
         this.numberAddress = this.addressTable.locator('td').nth(2)
@@ -28,21 +28,7 @@ export class AddressPage extends BasePage {
         this.initPage()
     }
 
-    checkAddress = async (first_name:string,last_name:string,city_address: string, street_address: string, number_address: string, mobile_address: string, postcode_address: string): Promise<boolean> => {
-        await this.page.reload()
-        await this.addressTable.first().waitFor({ state: "visible" })
-        const loops = await this.getNumberOfAddresses()
-        for (let i = 0; i < loops; i++) {
-            this.addressTable = this.page.locator('tr').nth(i+1)
-            if (
-                (await this.getCityAddress()).includes(city_address) && (await this.getStreetAddress()).includes(street_address) &&
-                (await this.getNumberAddress()).includes(number_address) && (await this.getMobileNumber()).includes(mobile_address) &&
-                (await this.getPostCode()).includes(postcode_address) && (await this.getName()).includes(first_name) && (await this.getLastName()).includes(last_name)) { return true }
-        }
-        return false
-    }
-
-    getName = async (): Promise<string> => { return (await this.name.innerText()) }
+    getFirstName = async (): Promise<string> => { return (await this.firstName.innerText()) }
 
     getLastName = async (): Promise<string> => { return (await this.lastName.innerText()) }
 

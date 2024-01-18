@@ -14,20 +14,24 @@ test.describe('Add New Address And Validate ', () => {
     test.beforeEach(async () => {
         browser = new BrowserWrapper()
         page = await browser.getPage(UI_URLS.myAdressesPage);
-        await browser.maximizeWindow()
     })
 
     test.afterEach(async () => { await browser.closeBrowser() })
 
-    test('Add New Address And Validate', async () => {
+    test('Add New Address Via Api And Validate Via Ui', async () => {
         const {firstname,lastname,postcode,telephone,city,country_id} = {...user.address}
         const {streetName,streetNumber,homeNumber} = {...user.address.street}
         const data = buildAddressRequest(firstname,lastname,postcode,telephone,city,country_id,{streetName,streetNumber,homeNumber})
         const apiCall = new ApiCalls();
         await apiCall.addNewAdress(data)
         const addressPage = new AddressPage(page)
-        expect( await addressPage.checkAddress(firstname,lastname,city,streetName,homeNumber,telephone,postcode)).toBeTruthy()
-
+        await page.reload()
+        expect(await addressPage.getFirstName()).toBe(firstname)
+        expect(await addressPage.getLastName()).toBe(lastname)
+        expect(await addressPage.getCityAddress()).toBe(city)
+        expect(await addressPage.getStreetAddress()).toBe(`${streetName}, ${streetNumber}, ${homeNumber}`)
+        expect(await addressPage.getMobileNumber()).toBe(telephone)
+        expect(await addressPage.getPostCode()).toBe(postcode)
     })
 
 })

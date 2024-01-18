@@ -13,9 +13,9 @@ import { ProductPage } from '../logic/ui/product-page';
 
 test.describe('search test', ()=>{
     let browserWrapper : BrowserWrapper;
-    let searchPage : SearchPage;
+    
 
-    test.beforeAll(async()=>{
+    test.beforeEach(async()=>{
         browserWrapper = new BrowserWrapper();
     })
     
@@ -23,7 +23,7 @@ test.describe('search test', ()=>{
         await browserWrapper.closeBrowser();
     })
 
-    test("Search By Photo",async () => {
+    test("Perform Search By Photo",async () => {
         const page = await browserWrapper.getPage(websiteUrl);
         const navBar = new NavBar(page);
         await navBar.openSeachByPhoto()
@@ -37,7 +37,7 @@ test.describe('search test', ()=>{
 
     test('Perform search on TerminalX ', async () => {
         const page = await browserWrapper.getPage(websiteUrl);
-        searchPage = new SearchPage(page);
+        const searchPage = new SearchPage(page);
         await searchPage.clickSearchIcon();
         await searchPage.typeSearch(query.brandSearch);
         await page.keyboard.press('Enter');
@@ -46,7 +46,7 @@ test.describe('search test', ()=>{
 
     test('Perform search from LOW PRICE to high PRICE', async () => {
         const page = await browserWrapper.getPage(websiteUrl);
-        searchPage = new SearchPage(page);
+        const searchPage = new SearchPage(page);
         await searchPage.clickSearchIcon();
         await searchPage.typeSearch(query.brandSearch);
         await page.keyboard.press('Enter');
@@ -56,7 +56,7 @@ test.describe('search test', ()=>{
 
     test('Perform search from High PRICE to Low PRICE', async () => {
         const page = await browserWrapper.getPage(websiteUrl);
-        searchPage = new SearchPage(page);
+        const searchPage = new SearchPage(page);
         await searchPage.clickSearchIcon();
         await searchPage.typeSearch(query.brandSearch);
         await page.keyboard.press('Enter');
@@ -65,7 +65,7 @@ test.describe('search test', ()=>{
 
     test('Perform filtering by item type', async () => {
         const page = await browserWrapper.getPage(websiteUrl);
-        searchPage = new SearchPage(page);
+        const searchPage = new SearchPage(page);
         await searchPage.clickSearchIcon();
         await searchPage.typeSearch(query.brandSearch);
         await page.keyboard.press('Enter');
